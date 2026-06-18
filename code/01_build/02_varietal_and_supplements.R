@@ -12,7 +12,7 @@ source(file.path(ROOT, "code/_config.R"))
 ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
 
 # ---- load input (Stata intermediate from step 1) ----------------------------
-d <- read_dt(file.path(ROOT, "Data/r_1_capture_geographic_origin.dta"))   # prior step output (.rds)
+d <- read_dt(file.path(ROOT, "data/derived/r_1_capture_geographic_origin.dta"))   # prior step output (.rds)
 
 # Helper to mirror Stata: regexm(" "+upc_descr+" ", " (TOK) ")
 ud <- function() paste0(" ", d$upc_descr, " ")
@@ -1006,7 +1006,7 @@ d[, price_per_bottle_final := final_price_paid / quantity_bottle]
 d[, price_per_bottle := total_price_paid / quantity_bottle]
 
 # merge m:1 year using CPI_deflator ; drop _merge
-cpi <- read_dta_dt(file.path(ROOT, "Other Supplement Data/CPI data/CPI_deflator.dta"))
+cpi <- read_dta_dt(file.path(ROOT, "data/public/cpi/CPI_deflator.dta"))
 d <- merge(d, cpi, by = "year", all.x = TRUE, all.y = FALSE)   # master kept; using-only rows excluded
 d[, final_price_per_bottle_deflated := price_per_bottle_final / Deflator]
 d[, price_per_bottle_deflated := price_per_bottle / Deflator]
@@ -1099,7 +1099,7 @@ d[upc_descr %in% c("SNTA BRBRA IT AZLENDA WT IDT","SN ANT IT LMBRSC RED IDT"), w
 # Merge country of origin from web search (2a_region_brand)
 # =============================================================================
 # merge m:1 brand_descr using 2a ; drop _merge (keeps master + matched cols)
-rb <- read_dta_dt(file.path(ROOT, "Data/2a_region_brand.dta"))
+rb <- read_dta_dt(file.path(ROOT, "data/public/brand_crosswalk/2a_region_brand.dta"))
 d <- merge(d, rb, by = "brand_descr", all.x = TRUE, all.y = FALSE)
 # Stata strings are never missing: unmatched merge rows are "" not NA. data.table
 # fills unmatched with NA, which silently breaks downstream =="" / !="" tests.
@@ -1116,7 +1116,7 @@ d[, c("price_per_bottle_final","price_per_bottle","final_price_per_bottle_deflat
 # =============================================================================
 # Merge state/AVA from web search (2b_external_match_basedonbrands)
 # =============================================================================
-em <- read_dta_dt(file.path(ROOT, "Data/2b_external_match_basedonbrands.dta"))
+em <- read_dta_dt(file.path(ROOT, "data/public/brand_crosswalk/2b_external_match_basedonbrands.dta"))
 d <- merge(d, em, by = "brand_descr", all.x = TRUE, all.y = FALSE)
 # coerce merged-in character columns NA -> "" (Stata: unmatched strings are "")
 for (.c in setdiff(names(em), "brand_descr"))
@@ -1134,7 +1134,7 @@ d[product_module_descr == "WINE-SPARKLING", wineclass := "sparkling"]
 d[wineclass == "", wineclass := "table"]
 # merge m:1 fips_state_code wineclass using state_excise_tax ; drop if _merge==2 ; drop _merge
 # Bring only excisetx_dollarpergallon (fips_state_descr already in master -> Stata keeps master's).
-tax <- read_dta_dt(file.path(ROOT, "Other Supplement Data/Tax Data/state_excise_tax.dta"))
+tax <- read_dta_dt(file.path(ROOT, "data/public/tax/state_excise_tax.dta"))
 tax <- tax[, c("fips_state_code","wineclass","excisetx_dollarpergallon")]
 d <- merge(d, tax, by = c("fips_state_code","wineclass"), all.x = TRUE, all.y = FALSE)  # all.x drops using-only (==2)
 d[, wineclass := NULL]
@@ -1189,7 +1189,7 @@ cr <- unique(d[, .(Importing_country, country_quantity)])
 cr[, rank_country := frank(-country_quantity, ties.method = "average")]
 cr <- cr[!(Importing_country == "")]   # drop if Importing_country==""
 # save country_ranking.dta (contains Importing_country, country_quantity, rank_country)
-write_dta(cr, file.path(ROOT, "Data/country_ranking.dta"))
+write_dta(cr, file.path(ROOT, "data/derived/country_ranking.dta"))
 # restore (d unchanged) then merge m:1 Importing_country using country_ranking.
 # Master already holds country_quantity; Stata keeps it (using's is identical for matches),
 # so merge only rank_country to avoid a .x/.y collision and reproduce the same column set.
@@ -1255,7 +1255,7 @@ d[geographic_label == "Sonoma_Coast", origin_state := "California"]
 # Distance instrument
 # =============================================================================
 # merge m:1 scantrack_market_descr origin_state using distance ; drop if _merge==2 ; drop _merge
-dist <- read_dta_dt(file.path(ROOT, "Other Supplement Data/Distance Instrument/distance.dta"))
+dist <- read_dta_dt(file.path(ROOT, "data/public/distance/distance.dta"))
 d <- merge(d, dist, by = c("scantrack_market_descr","origin_state"), all.x = TRUE, all.y = FALSE)
 d[state_appellation == "Pureto Rico", state_appellation := "Other_State"]
 
@@ -1263,12 +1263,12 @@ d[state_appellation == "Pureto Rico", state_appellation := "Other_State"]
 # Merge with Population Data (preserve/restore split by year, then append)
 # =============================================================================
 # poputemp1: year<=2009 merged with Population_2005-09 (key: scantrack_market_descr)
-pop1 <- read_dta_dt(file.path(ROOT, "Other Supplement Data/MSA_Population/Population_2005-09.dta"))
+pop1 <- read_dta_dt(file.path(ROOT, "data/public/population/Population_2005-09.dta"))
 temp1 <- d[!(year > 2009)]
 temp1 <- merge(temp1, pop1, by = "scantrack_market_descr", all.x = TRUE, all.y = FALSE)
 
 # poputemp2: year>=2010 merged with Population_2010-19 (keys: year, scantrack_market_descr)
-pop2 <- read_dta_dt(file.path(ROOT, "Other Supplement Data/MSA_Population/Population_2010-19.dta"))
+pop2 <- read_dta_dt(file.path(ROOT, "data/public/population/Population_2010-19.dta"))
 temp2 <- d[!(year < 2010)]
 setorder(temp2, year, scantrack_market_descr)
 temp2 <- merge(temp2, pop2, by = c("year","scantrack_market_descr"), all.x = TRUE, all.y = FALSE)
@@ -1279,5 +1279,5 @@ d <- rbindlist(list(temp1, temp2), fill = TRUE)
 # =============================================================================
 # Save output
 # =============================================================================
-save_dt(d, file.path(ROOT, "Data/r_2_varietal_and_supplement_data.dta"))
+save_dt(d, file.path(ROOT, "data/derived/r_2_varietal_and_supplement_data.dta"))
 cat("Done. nrow =", nrow(d), "\n")

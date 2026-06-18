@@ -44,11 +44,17 @@ that prohibits redistribution. We therefore **cannot include the NielsenIQ data 
 | `store_count/foodstorecount_2012.dta`, `foodstorecount_2017.dta` | Food/beverage store counts (Census County Business Patterns) |
 | `distance/distance.dta` | Market-to-appellation distances (authors' construction) |
 | `distance/diesel_price.dta` | Diesel prices (EIA) |
-| `brand_crosswalk/2a_region_brand.dta`, `2b_external_match_basedonbrands.dta` | Brand→region crosswalks, hand-built by the authors from public web sources |
 
-The **proprietary** compiled panel (`data/raw/panel_wine_module_2021.dta`, ~4.3 GB) is **not**
-distributed. A replicator with Kilts access regenerates it from the HMS annual files with
-`legacy_stata/1a_panel_compile_wine_2004_2019.do`, then runs the pipeline below.
+**Restricted inputs that are NOT distributed** (required to run, available from the authors on
+request, subject to the NielsenIQ agreement):
+
+- `data/raw/panel_wine_module_2021.dta` (~4.3 GB) — the proprietary compiled NielsenIQ panel. A
+  replicator with Kilts access regenerates it from the HMS annual files with
+  `legacy_stata/1a_panel_compile_wine_2004_2019.do`.
+- `data/public/brand_crosswalk/2a_region_brand.dta`, `2b_external_match_basedonbrands.dta` —
+  hand-built brand→region crosswalks. These embed NielsenIQ `brand_descr` strings, so they are
+  treated as restricted and are not redistributed; the authors will provide them to researchers
+  with Kilts access. (They are used only in `code/01_build/02_varietal_and_supplements.R`.)
 
 ---
 

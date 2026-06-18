@@ -6,7 +6,7 @@
 # =============================================================================
 suppressMessages({library(data.table)})
 ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
-WF <- file.path(ROOT, "Data/Welfare")
+WF <- file.path(ROOT, "data/derived/welfare")
 OUT <- file.path(ROOT, "output/tables"); dir.create(OUT, showWarnings=FALSE, recursive=TRUE)
 NONCONV <- c(817,818,819,820,821,822,825,826)
 a <- 0.16; s1 <- 0.65; s2 <- 0.47

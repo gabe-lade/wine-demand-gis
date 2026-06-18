@@ -6,7 +6,7 @@ suppressMessages({library(haven); library(data.table); library(fixest)})
 options(width = 120)
 
 REPO <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
-d <- as.data.table(readRDS(file.path(REPO,"Data/r_4_demand_estimation_data.rds")))
+d <- as.data.table(readRDS(file.path(REPO,"data/derived/r_4_demand_estimation_data.rds")))
 nm <- names(d)
 
 # drop 11 product singletons -> N = 794,974 (as ivreghdfe/reghdfe do)
@@ -113,4 +113,11 @@ el <- data.frame(
   stata  = c(-4.755, -2.089, -0.1271, -0.5283, -0.6581, -0.04004))
 el$diff <- abs(el$R - el$stata)
 print(el, row.names=FALSE, digits=4)
-cat("\nDONE\n")
+
+# ---- write exhibits to output/tables/ ----
+OUT <- file.path(REPO, "output/tables"); dir.create(OUT, recursive=TRUE, showWarnings=FALSE)
+data.table::fwrite(t2, file.path(OUT, "table_2_demand_params.csv"))
+data.table::fwrite(el, file.path(OUT, "table_2_elasticities.csv"))
+wtp_full <- data.table::as.data.table(coeftable(wtp_mod), keep.rownames="attribute")
+data.table::fwrite(wtp_full, file.path(OUT, "table_3_wtp.csv"))
+cat("\nWrote output/tables/{table_2_demand_params, table_2_elasticities, table_3_wtp}.csv\nDONE\n")

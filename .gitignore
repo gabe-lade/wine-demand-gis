@@ -56,3 +56,5 @@ renv/staging/
 Elasticity Estimation/
 DescriptiveStats/
 Results/*.dta
+Results/
+country_ranking.dta

@@ -33,7 +33,7 @@ write_table <- function(dt, name) {
 # PART 1: BOTTLE DATA                                            # L9-L206
 # =============================================================================
 
-d <- read_dt(file.path(ROOT, "Data/r_2_varietal_and_supplement_data.dta"))  # L9
+d <- read_dt(file.path(ROOT, "data/derived/r_2_varietal_and_supplement_data.dta"))  # L9
 
 d <- d[size_category == "bottle"]                                              # L11
 
@@ -258,7 +258,7 @@ pre_3_bottle <- copy(d)
 # PART 2: BULK DATA                                              # L210-L383
 # =============================================================================
 
-d <- read_dt(file.path(ROOT, "Data/r_2_varietal_and_supplement_data.dta"))  # L212
+d <- read_dt(file.path(ROOT, "data/derived/r_2_varietal_and_supplement_data.dta"))  # L212
 
 d <- d[size_category == "bulk"]                                               # L214
 
@@ -653,7 +653,7 @@ d[, (drop_range_L571) := NULL]                                                # 
 d[, c("quantity_bottle_w", "final_price_paid_w", "total_price_paid_w") := NULL]  # L604
 
 # save 3_product_data                                                         # L606
-save_dt(d, file.path(ROOT, "Data/r_3_product_data.dta"))  # L606
+save_dt(d, file.path(ROOT, "data/derived/r_3_product_data.dta"))  # L606
 
 cat(sprintf("DONE. Product dataset rows = %d, cols = %d\n", nrow(d), ncol(d)))
 

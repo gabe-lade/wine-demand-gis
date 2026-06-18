@@ -6,7 +6,7 @@
 # =============================================================================
 suppressMessages({library(data.table)})
 ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
-WF <- file.path(ROOT, "Data/Welfare")
+WF <- file.path(ROOT, "data/derived/welfare")
 
 d  <- as.data.table(readRDS(file.path(WF, "welfare_base.rds")))
 mc <- fread(file.path(WF, "2_marginal_cost.csv"))[, .(product, market, marginal_cost)]

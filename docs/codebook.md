@@ -60,6 +60,11 @@ Quarterly diesel price (shipping-cost instrument). Source: US EIA.
 | `date_quarter` | quarter index |
 | `diesel_price` | diesel price |
 
+## brand_crosswalk/ — RESTRICTED, NOT distributed
+> The two crosswalk files below embed NielsenIQ `brand_descr` strings and are therefore treated as
+> restricted (not committed; available from the authors on request to researchers with Kilts
+> access). Listed here for documentation only.
+
 ## brand_crosswalk/2a_region_brand.dta  (648 × 3)
 Brand → country / state crosswalk, hand-built by the authors from public web sources.
 | variable | description |

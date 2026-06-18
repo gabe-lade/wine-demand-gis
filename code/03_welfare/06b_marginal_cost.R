@@ -1,11 +1,11 @@
 # =============================================================================
 # 06b_marginal_cost.R — port of Rscripts/compute_marginal_cost.R (paths fixed).
 # Recovers marginal cost per market by solving the Bertrand-Nash FOC.
-# Reads Data/Welfare/1_input_data_for_mc.csv ; writes Data/Welfare/2_marginal_cost.csv
+# Reads data/derived/welfare/1_input_data_for_mc.csv ; writes data/derived/welfare/2_marginal_cost.csv
 # =============================================================================
 suppressMessages({library(magrittr); library(tidyverse)})
 ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
-WF <- file.path(ROOT, "Data/Welfare")
+WF <- file.path(ROOT, "data/derived/welfare")
 
 winedata <- read.csv(file.path(WF, "1_input_data_for_mc.csv")) %>%
   as_tibble() %>% arrange(market, product)

@@ -8,9 +8,9 @@
 # =============================================================================
 ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
 source(file.path(ROOT, "code/_config.R"))
-WF <- file.path(ROOT, "Data/Welfare"); dir.create(WF, showWarnings = FALSE, recursive = TRUE)
+WF <- file.path(ROOT, "data/derived/welfare"); dir.create(WF, showWarnings = FALSE, recursive = TRUE)
 
-d <- as.data.table(readRDS(file.path(ROOT, "Data/r_4_demand_estimation_data.rds")))
+d <- as.data.table(readRDS(file.path(ROOT, "data/derived/r_4_demand_estimation_data.rds")))
 nm <- names(d)
 d[, .pc := .N, by = product]; d <- d[.pc > 1]; d[, .pc := NULL]   # 794,974
 

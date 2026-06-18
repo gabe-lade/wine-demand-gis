@@ -15,7 +15,7 @@ ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-r
 # it correctly. convert.factors=FALSE keeps value-labelled vars (e.g. scm_code)
 # as their underlying numeric codes, matching the Stata logic.
 suppressMessages(library(readstata13))
-d <- read_dt(file.path(ROOT, "Data/r_3_product_data.dta"))
+d <- read_dt(file.path(ROOT, "data/derived/r_3_product_data.dta"))
 
 # --- .do line 12-13: gen date_quarter = qofd(date) --------------------------
 # Stata qofd(): number of quarters since 1960q1 = (year-1960)*4 + (quarter-1).
@@ -142,7 +142,7 @@ d[, Z9  := .N, by = .(market, geographiclabel)];         d[, Z9  := Z9  - 1]
 d[, Z10 := .N, by = .(market, brand_name)];              d[, Z10 := Z10 - 1]
 
 # --- .do line 123-126: distance instrument (merge m:1 date_quarter) ---------
-diesel <- read_dta_dt(file.path(ROOT, "Other Supplement Data/Distance Instrument/diesel_price.dta"))
+diesel <- read_dta_dt(file.path(ROOT, "data/public/distance/diesel_price.dta"))
 d <- merge(d, diesel, by = "date_quarter", all.x = TRUE)   # drop _merge
 d[, gallons_req       := distance_miles / 25]
 d[, distribution_cost := gallons_req * diesel_price]
@@ -153,10 +153,10 @@ d[, dis_sum := dis_sum - distance_miles]
 
 # --- .do line 133-142: store count data -------------------------------------
 # merge m:1 scantrack_market_descr ... drop if _merge==2 (using-only obs).
-fsc2017 <- read_dta_dt(file.path(ROOT, "Other Supplement Data/Retail Store Count_County Business Profile/Stata_Data/foodstorecount_2017.dta"))
+fsc2017 <- read_dta_dt(file.path(ROOT, "data/public/store_count/foodstorecount_2017.dta"))
 d <- merge(d, fsc2017, by = "scantrack_market_descr", all.x = TRUE)  # drop _merge==2 == all.x
 
-fsc2012 <- read_dta_dt(file.path(ROOT, "Other Supplement Data/Retail Store Count_County Business Profile/Stata_Data/foodstorecount_2012.dta"))
+fsc2012 <- read_dta_dt(file.path(ROOT, "data/public/store_count/foodstorecount_2012.dta"))
 d <- merge(d, fsc2012, by = "scantrack_market_descr", all.x = TRUE)
 
 d[, store_count := NA_real_]
@@ -165,7 +165,7 @@ d[year < 2012,  store_count := foodandbeveragestorescount_2012]
 d[year == 2012, store_count := foodandbeveragestorescount_2012]
 
 # --- .do line 143-147: MSA area merge + retail densities --------------------
-msa <- read_dta_dt(file.path(ROOT, "Other Supplement Data/Retail Store Count_County Business Profile/DEC_10_MSAAREA/MSA_Area_2010Census.dta"))
+msa <- read_dta_dt(file.path(ROOT, "data/public/area/MSA_Area_2010Census.dta"))
 d <- merge(d, msa, by = "scantrack_market_descr", all.x = TRUE)
 
 d[, retail_density_area := areainsquaremilestotalarea / store_count]
@@ -223,7 +223,7 @@ keep_vars <- keep_vars[keep_vars %in% names(d)]
 d <- d[, ..keep_vars]
 
 # --- .do line 158: save ------------------------------------------------------
-save_dt(d, file.path(ROOT, "Data/r_4_demand_estimation_data.dta"))
+save_dt(d, file.path(ROOT, "data/derived/r_4_demand_estimation_data.dta"))
 
-cat("Wrote:", file.path(ROOT, "Data/r_4_demand_estimation_data.dta"), "\n")
+cat("Wrote:", file.path(ROOT, "data/derived/r_4_demand_estimation_data.dta"), "\n")
 cat("nrow:", nrow(d), "  ncol:", ncol(d), "\n")

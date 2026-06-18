@@ -14,7 +14,7 @@
 ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
 source(file.path(ROOT, "code/_config.R"))
 
-d <- read_dta_dt(file.path(ROOT, "Data/Wine Master Data/panel_wine_module_2021.dta"))
+d <- read_dta_dt(file.path(ROOT, "data/raw/panel_wine_module_2021.dta"))
 
 # -----------------------------------------------------------------------------
 # DATA CLEANING 1: TIME PERIOD - Restricting study period to 2007-17
@@ -1185,6 +1185,6 @@ d[, (.drop_all) := NULL]
 
 # Write R-native .rds (avoids haven's strict label validation; the all-R pipeline
 # uses .rds intermediates — see _config.R save_dt/read_dt).
-save_dt(d, file.path(ROOT, "Data/r_1_capture_geographic_origin.dta"))
+save_dt(d, file.path(ROOT, "data/derived/r_1_capture_geographic_origin.dta"))
 
 # ***This is end of this do file***

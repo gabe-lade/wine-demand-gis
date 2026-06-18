@@ -2,11 +2,11 @@
 # 07a_sim_first_iteration.R — port of Rscripts/price_share_simulation_first_iteration.R
 # (paths fixed). Solves the Bertrand-Nash counterfactual equilibrium (FE4_counterfactual)
 # per market by FOC iteration. Run time ~ several hours. Writes
-# Data/Welfare/simulated_price_share_first_iteration.csv
+# data/derived/welfare/simulated_price_share_first_iteration.csv
 # =============================================================================
 suppressMessages({library(magrittr); library(tidyverse)})
 ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
-WF <- file.path(ROOT, "Data/Welfare")
+WF <- file.path(ROOT, "data/derived/welfare")
 source(file.path(ROOT, "code/03_welfare/_demand_functions.R"))
 
 winedata <- read.csv(file.path(WF, "data_for_counterfactual_first_iteration.csv")) %>%

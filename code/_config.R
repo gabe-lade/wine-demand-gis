@@ -12,14 +12,14 @@ if (!exists("ROOT") || !nzchar(ROOT) || !dir.exists(file.path(ROOT, "code"))) {
   start <- if (length(fa)) dirname(normalizePath(sub("^--file=", "", fa[1])))
            else normalizePath(getwd())
   r <- start
-  while (!all(dir.exists(file.path(r, c("code", "DoFile")))) &&
+  while (!all(dir.exists(file.path(r, c("code", "data")))) &&
          dirname(r) != r) r <- dirname(r)
   ROOT <- r
 }
-DATA    <- file.path(ROOT, "Data")                 # proprietary + derived (Phase C will split)
-PUBLIC  <- file.path(ROOT, "Other Supplement Data")
-DERIVED <- file.path(ROOT, "Data")                 # intermediate .dta outputs
-OUTPUT  <- file.path(ROOT, "output")
+RAW     <- file.path(ROOT, "data/raw")             # proprietary NielsenIQ panel (gitignored)
+PUBLIC  <- file.path(ROOT, "data/public")          # redistributable supplements
+DERIVED <- file.path(ROOT, "data/derived")         # regenerated intermediates (gitignored)
+OUTPUT  <- file.path(ROOT, "output")               # exhibits (tables/figures/numbers)
 
 suppressMessages({
   library(haven)
