@@ -1,0 +1,36 @@
+Importing_country,Varietal,country_percent
+Argentina,Malbec,3.32
+Argentina,Other_Red_Imported,0.63
+Argentina,Cabernet Sauvignon,0.47
+Australia,Syrah,2.72
+Australia,Cabernet Sauvignon,1.75
+Australia,Merlot,1.38
+Australia,Cabernet_Blend,1.28
+Australia,Other_Red_Imported,0.71
+Australia,Pinot Noir,0.54
+Australia,Syrah_Blend,0.27
+Australia,Malbec,0.22
+Chile,Cabernet Sauvignon,1.64
+Chile,Other_Red_Imported,0.62
+Chile,Carmenere,0.6
+Chile,Merlot,0.59
+Chile,Cabernet_Blend,0.24
+Chile,Pinot Noir,0.24
+Domestic,Cabernet Sauvignon,22.38
+Domestic,Other_Red,15.72
+Domestic,Merlot,14.59
+Domestic,Pinot Noir,7.39
+Domestic,Zinfandel,4.33
+Domestic,Syrah,3.32
+Domestic,Petite_Syrah,0.72
+Domestic,Moscato_Red,0.48
+Domestic,Concord,0.36
+Domestic,Cabernet_Blend,0.21
+France,Other_Red_Imported,2.69
+Germany,Other_Red_Imported,0.13
+Italy,Other_Red_Imported,5.92
+New Zealand,Other_Red_Imported,0.12
+Other_Countries,Other_Red_Imported,0.3
+Portugal,Other_Red_Imported,0.33
+South Africa,Other_Red_Imported,0.66
+Spain,Other_Red_Imported,3.12

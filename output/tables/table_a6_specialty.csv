@@ -1,0 +1,27 @@
+Importing_country,Varietal,country_percent
+Argentina,Blush_Rose,0.32
+Argentina,Flavoured,0
+Argentina,Sparkling,0
+Argentina,Other_Specialty_Imported,0
+Australia,Blush_Rose,0.32
+Australia,Sparkling,0.03
+Australia,Flavoured,0.01
+Australia,Other_Specialty_Imported,0.01
+Australia,Other_Specialty,0
+Chile,Blush_Rose,0.62
+Chile,Other_Specialty_Imported,0.04
+Domestic,Sparkling,28.4
+Domestic,Blush_Rose,23.78
+Domestic,Flavoured,12.01
+Domestic,Sangria,3.13
+Domestic,Vermouth,2.9
+Domestic,Dessert,2.85
+Domestic,Other_Specialty,0.49
+France,Other_Specialty_Imported,3.53
+Germany,Other_Specialty_Imported,0.04
+Italy,Other_Specialty_Imported,8.1
+New Zealand,Other_Specialty_Imported,0.05
+Other_Countries,Other_Specialty_Imported,7.32
+Portugal,Other_Specialty_Imported,2.64
+South Africa,Other_Specialty_Imported,0.12
+Spain,Other_Specialty_Imported,3.28

@@ -1,0 +1,27 @@
+Importing_country,Varietal,country_percent
+Argentina,Other_White_Imported,1.91
+Australia,Chardonnay,8.98
+Australia,Pinot Grigio,1.95
+Australia,Moscato_White,0.85
+Australia,Other_White_Imported,0.44
+Australia,Riesling,0.21
+Chile,Chardonnay,1.08
+Chile,Sauvignon Blanc,0.48
+Chile,Other_White_Imported,0.34
+Domestic,Other_White,30.88
+Domestic,Chardonnay,28.4
+Domestic,Pinot Grigio,8.92
+Domestic,Moscato_White,5.55
+Domestic,Sauvignon Blanc,3.07
+Domestic,Riesling,0.88
+France,Other_White_Imported,0.07
+Germany,Riesling,0.58
+Germany,Other_White_Imported,0.15
+Italy,Other_White_Imported,4.66
+New Zealand,Sauvignon Blanc,0.4
+New Zealand,Riesling,0
+Other_Countries,Other_White_Imported,0.14
+Portugal,Other_White_Imported,0.03
+Portugal,Other_White,0
+South Africa,Other_White_Imported,0.03
+Spain,Other_White_Imported,0.01

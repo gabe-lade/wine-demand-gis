@@ -1,0 +1,58 @@
+# =============================================================================
+# Proprietary NielsenIQ data — NEVER commit (see README, Data Availability Statement)
+# =============================================================================
+Data/Wine Master Data/
+data/raw/
+*panel_wine_module*
+
+# Brand crosswalks embed NielsenIQ brand_descr strings -> treat as restricted, do NOT commit
+*2a_region_brand*
+*2b_external_match_basedonbrands*
+data/public/brand_crosswalk/
+
+# =============================================================================
+# Regenerable intermediates (R-native + Stata) — rebuilt by the pipeline
+# =============================================================================
+Data/r_*.rds
+Data/r_*.dta
+Data/[1-9]_*.dta
+Data/pre_3_*.dta
+Data/Welfare/
+data/derived/
+*.RData
+
+# =============================================================================
+# Published article (copyright) and submission drafts — not redistributable
+# =============================================================================
+*.pdf
+resubmission/
+
+# =============================================================================
+# Working / staging dirs and logs (validation scaffolding)
+# =============================================================================
+Rport/
+_verify/
+*.log
+logfile_*
+
+# =============================================================================
+# renv library (renv.lock IS committed; the library is not)
+# =============================================================================
+renv/library/
+renv/local/
+renv/cellar/
+renv/staging/
+
+# =============================================================================
+# OS / editor cruft
+# =============================================================================
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user/
+*~
+
+# stray Stata descriptive/intermediate outputs (regenerable)
+Elasticity Estimation/
+DescriptiveStats/
+Results/*.dta
