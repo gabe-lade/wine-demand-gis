@@ -4,6 +4,8 @@ Chandra, Raj, GianCarlo Moschini, and Gabriel E. Lade. 2025. "Geographical indic
 welfare: Evidence from US wine demand." *American Journal of Agricultural Economics* 107(2):
 670–695. https://doi.org/10.1111/ajae.12499
 
+Corresponding author: Gabriel E. Lade (glade@macalester.edu).
+
 This package reproduces the paper's empirical results — the nested-logit demand estimates
 (Table 2), the marginal willingness-to-pay estimates (Table 3), and the welfare counterfactual
 (Table 4) — from NielsenIQ Consumer Panel data over 2007–2019.
@@ -21,7 +23,7 @@ for Marketing** at the University of Chicago Booth School of Business under a da
 that prohibits redistribution. We therefore **cannot include the NielsenIQ data in this package.**
 
 - Source / access: NielsenIQ Datasets at the Kilts Center for Marketing,
-  https://www.chicagobooth.edu/research/kilts/research-data/nielseniq
+  https://www.chicagobooth.edu/research/kilts/datasets/nielsenIQ-nielsen
   An institutional subscription and a signed data-use agreement are required. Any researcher with
   Kilts access can obtain the same Consumer Panel extracts (HMS annual files, 2007–2019).
 - Disclaimer (per the data agreement): "Researcher(s) own analyses calculated (or derived) based
