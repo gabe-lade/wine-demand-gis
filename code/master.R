@@ -11,8 +11,16 @@
 #   Table 2  price -0.165, sigma1 0.648, sigma2 0.468; own elast -4.76; N 794,974
 #   Table 3  WTP per bottle (Napa 6.18, Anderson Valley 9.83, France 3.49, ...)
 # =============================================================================
-ROOT <- normalizePath(file.path(dirname(sys.frame(1)$ofile %||% "."), ".."))
-if (!dir.exists(file.path(ROOT, "code"))) ROOT <- normalizePath(getwd())
+# Resolve the project root robustly — works via `Rscript`, `source()`, or interactively.
+find_root <- function() {
+  a <- commandArgs(FALSE); f <- grep("^--file=", a, value = TRUE)
+  p <- if (length(f)) dirname(normalizePath(sub("^--file=", "", f[1]))) else normalizePath(getwd())
+  while (!file.exists(file.path(p, "code", "_config.R")) && dirname(p) != p) p <- dirname(p)
+  if (!file.exists(file.path(p, "code", "_config.R")))
+    stop("Could not locate project root. Run from inside the repo, or `setwd()` to it first.")
+  p
+}
+ROOT <- find_root()
 
 steps <- c(
   "code/01_build/01_capture_geographic_origin.R",   # 4.3 GB panel -> r_1  (~10 min)

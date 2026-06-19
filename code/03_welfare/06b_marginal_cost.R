@@ -4,7 +4,7 @@
 # Reads data/derived/welfare/1_input_data_for_mc.csv ; writes data/derived/welfare/2_marginal_cost.csv
 # =============================================================================
 suppressMessages({library(magrittr); library(tidyverse)})
-ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+ROOT <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 WF <- file.path(ROOT, "data/derived/welfare")
 
 winedata <- read.csv(file.path(WF, "1_input_data_for_mc.csv")) %>%

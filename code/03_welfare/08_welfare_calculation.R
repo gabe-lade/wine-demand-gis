@@ -5,7 +5,7 @@
 # Uses rounded structural params (alpha=-0.16, sigma1=0.65, sigma2=0.47), as the original.
 # =============================================================================
 suppressMessages({library(data.table)})
-ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+ROOT <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 WF <- file.path(ROOT, "data/derived/welfare")
 OUT <- file.path(ROOT, "output/tables"); dir.create(OUT, showWarnings=FALSE, recursive=TRUE)
 NONCONV <- c(817,818,819,820,821,822,825,826)

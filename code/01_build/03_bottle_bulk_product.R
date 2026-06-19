@@ -10,10 +10,10 @@
 # comments like  # L<nn>  for traceability.
 # =============================================================================
 
-ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+ROOT <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 .PROJ_ROOT <- ROOT   # ensure _config.R adopts this ROOT instead of resolving its own
 source(file.path(ROOT, "code/_config.R"))
-ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+ROOT <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 
 TABLES <- file.path(ROOT, "output", "tables")
 dir.create(TABLES, showWarnings = FALSE, recursive = TRUE)

@@ -5,7 +5,7 @@
 suppressMessages({library(haven); library(data.table); library(fixest)})
 options(width = 120)
 
-REPO <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+REPO <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 d <- as.data.table(readRDS(file.path(REPO,"data/derived/r_4_demand_estimation_data.rds")))
 nm <- names(d)
 

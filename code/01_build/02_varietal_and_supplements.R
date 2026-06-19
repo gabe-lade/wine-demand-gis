@@ -6,10 +6,10 @@
 # population). Faithful line-by-line translation of the Stata .do file.
 # =============================================================================
 
-ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+ROOT <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 .PROJ_ROOT <- ROOT  # pin root so _config.R resolves to this repo (not the script dir)
 source(file.path(ROOT, "code/_config.R"))
-ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+ROOT <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 
 # ---- load input (Stata intermediate from step 1) ----------------------------
 d <- read_dt(file.path(ROOT, "data/derived/r_1_capture_geographic_origin.dta"))   # prior step output (.rds)

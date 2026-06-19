@@ -11,7 +11,7 @@
 # NOTE: This script loads a ~4.3 GB .dta file; do not run casually.
 # =============================================================================
 
-ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+ROOT <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 source(file.path(ROOT, "code/_config.R"))
 
 d <- read_dta_dt(file.path(ROOT, "data/raw/panel_wine_module_2021.dta"))

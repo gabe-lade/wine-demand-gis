@@ -5,7 +5,7 @@
 # Lumping: FE1=rest (=FE1+FE2+FE3+residual), FE2=FE3=residual_nested=0, FE4 kept.
 # =============================================================================
 suppressMessages({library(data.table)})
-ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+ROOT <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 WF <- file.path(ROOT, "data/derived/welfare")
 
 d  <- as.data.table(readRDS(file.path(WF, "welfare_base.rds")))

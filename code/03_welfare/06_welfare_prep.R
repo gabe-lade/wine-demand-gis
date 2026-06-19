@@ -6,7 +6,7 @@
 # Uses the EXACT GMM betas for FE4/rest (as Stata stored them), and the rounded
 # alpha=-0.16, sigma1=0.65, sigma2=0.47 in the demand sims/welfare (as the original).
 # =============================================================================
-ROOT <- "/Users/lade.10/Library/CloudStorage/Dropbox/Work/RESEARCH/wine-demand-repo"
+ROOT <- local({a<-commandArgs(FALSE);f<-grep("^--file=",a,value=TRUE);p<-if(length(f))dirname(normalizePath(sub("^--file=","",f[1])))else normalizePath(getwd());while(!file.exists(file.path(p,"code","_config.R"))&&dirname(p)!=p)p<-dirname(p);p})
 source(file.path(ROOT, "code/_config.R"))
 WF <- file.path(ROOT, "data/derived/welfare"); dir.create(WF, showWarnings = FALSE, recursive = TRUE)
 
