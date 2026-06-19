@@ -7,7 +7,7 @@ set more off
 clear all
 use "Z:\NIELSENDATA\consumer_panel\codeSTATA\GianCarlo\Discrete Choice\Main\Data\Wine Master Data\panel_wine_module_2021.dta", clear
 
-*DATA CLEANING 1: TIME PERIOD - Restricting study period to 2007-17
+*DATA CLEANING 1: TIME PERIOD - Restricting study period to 2007-2019
 drop if panel_year < 2007
 drop if year < 2007
 

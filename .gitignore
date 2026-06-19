@@ -25,6 +25,7 @@ data/derived/
 # Published article (copyright) and submission drafts — not redistributable
 # =============================================================================
 *.pdf
+!README.pdf
 resubmission/
 
 # =============================================================================
@@ -58,3 +59,6 @@ DescriptiveStats/
 Results/*.dta
 Results/
 country_ranking.dta
+
+# quarto render cache
+.quarto/

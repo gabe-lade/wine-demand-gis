@@ -17,7 +17,7 @@ source(file.path(ROOT, "code/_config.R"))
 d <- read_dta_dt(file.path(ROOT, "data/raw/panel_wine_module_2021.dta"))
 
 # -----------------------------------------------------------------------------
-# DATA CLEANING 1: TIME PERIOD - Restricting study period to 2007-17
+# DATA CLEANING 1: TIME PERIOD - Restricting study period to 2007-2019
 # -----------------------------------------------------------------------------
 d <- d[!(panel_year < 2007)]
 d <- d[!(year < 2007)]
